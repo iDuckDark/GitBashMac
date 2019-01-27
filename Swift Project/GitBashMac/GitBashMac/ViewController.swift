@@ -77,11 +77,13 @@ class ViewController: NSViewController {
         enableButton.isEnabled = false
         if(enable){
             title = "Disable";
-            command = "/bin/bash -c \"$(curl -fsSL https://raw.githubusercontent.com/fabriziocucci/git-bash-for-mac/master/install.sh)\""
+            //command = "/bin/bash -c \"$(curl -fsSL https://raw.githubusercontent.com/fabriziocucci/git-bash-for-mac/master/install.sh)\""
+            command = "/bin/bash -c \"$(curl -fsSL https://raw.githubusercontent.com/iDuckDark/GitBashMac/master/Swift%20Project/MetaData/install.sh)\""
         } else{
             enableButton.isEnabled = false
             title = "Enable";
-            command = "/bin/bash -c \"$(curl -fsSL https://raw.githubusercontent.com/fabriziocucci/git-bash-for-mac/master/uninstall.sh)\""
+            //command = "/bin/bash -c \"$(curl -fsSL https://raw.githubusercontent.com/fabriziocucci/git-bash-for-mac/master/uninstall.sh)\""
+            command = "/bin/bash -c \"$(curl -fsSL https://raw.githubusercontent.com/iDuckDark/GitBashMac/master/Swift%20Project/MetaData/uninstall.sh)\""
         }
         do{
             try executeCommand(command, title)
