@@ -26,6 +26,7 @@ class ViewController: NSViewController {
         super.viewDidAppear()
         self.view.window?.title = "GitBash for MacOS"
         constructStatusIem()
+        self.view.window?.styleMask.remove(NSWindow.StyleMask.resizable)
     }
     
     override var representedObject: Any? {
