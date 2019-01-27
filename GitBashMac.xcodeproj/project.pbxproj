@@ -13,8 +13,8 @@
 		59521A1521F2FB8700FA432B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 59521A1321F2FB8700FA432B /* Main.storyboard */; };
 		59521A2121F2FB8700FA432B /* GitBashMacTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59521A2021F2FB8700FA432B /* GitBashMacTests.swift */; };
 		59521A2C21F2FB8700FA432B /* GitBashMacUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59521A2B21F2FB8700FA432B /* GitBashMacUITests.swift */; };
-		598696C221FC067000AB1EF7 /* uninstall.sh in Resources */ = {isa = PBXBuildFile; fileRef = 598696C021FC067000AB1EF7 /* uninstall.sh */; };
-		598696C321FC067000AB1EF7 /* install.sh in Resources */ = {isa = PBXBuildFile; fileRef = 598696C121FC067000AB1EF7 /* install.sh */; };
+		59D465F721FD226500D10A0A /* GitBashMac.icns in Resources */ = {isa = PBXBuildFile; fileRef = 59D465F621FD226500D10A0A /* GitBashMac.icns */; };
+		59D465F921FD2D9900D10A0A /* GitBashMac.png in Resources */ = {isa = PBXBuildFile; fileRef = 59D465F821FD2D9900D10A0A /* GitBashMac.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,8 +48,8 @@
 		59521A2721F2FB8700FA432B /* GitBashMacUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GitBashMacUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		59521A2B21F2FB8700FA432B /* GitBashMacUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitBashMacUITests.swift; sourceTree = "<group>"; };
 		59521A2D21F2FB8700FA432B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		598696C021FC067000AB1EF7 /* uninstall.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = uninstall.sh; sourceTree = "<group>"; };
-		598696C121FC067000AB1EF7 /* install.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = install.sh; sourceTree = "<group>"; };
+		59D465F621FD226500D10A0A /* GitBashMac.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = GitBashMac.icns; sourceTree = "<group>"; };
+		59D465F821FD2D9900D10A0A /* GitBashMac.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GitBashMac.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,9 +104,9 @@
 				59521A0F21F2FB8600FA432B /* ViewController.swift */,
 				59521A1121F2FB8700FA432B /* Assets.xcassets */,
 				59521A1321F2FB8700FA432B /* Main.storyboard */,
-				598696C121FC067000AB1EF7 /* install.sh */,
-				598696C021FC067000AB1EF7 /* uninstall.sh */,
 				59521A1621F2FB8700FA432B /* Info.plist */,
+				59D465F621FD226500D10A0A /* GitBashMac.icns */,
+				59D465F821FD2D9900D10A0A /* GitBashMac.png */,
 				59521A1721F2FB8700FA432B /* GitBashMac.entitlements */,
 			);
 			path = GitBashMac;
@@ -239,9 +239,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				598696C221FC067000AB1EF7 /* uninstall.sh in Resources */,
+				59D465F921FD2D9900D10A0A /* GitBashMac.png in Resources */,
 				59521A1221F2FB8700FA432B /* Assets.xcassets in Resources */,
-				598696C321FC067000AB1EF7 /* install.sh in Resources */,
+				59D465F721FD226500D10A0A /* GitBashMac.icns in Resources */,
 				59521A1521F2FB8700FA432B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -433,7 +433,7 @@
 		59521A3121F2FB8700FA432B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = Icon;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = C66WPHYLGP;
@@ -442,6 +442,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				PRODUCT_BUNDLE_IDENTIFIER = iDarkDuck.GitBashMac;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -451,7 +452,7 @@
 		59521A3221F2FB8700FA432B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = Icon;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = C66WPHYLGP;
@@ -460,6 +461,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				PRODUCT_BUNDLE_IDENTIFIER = iDarkDuck.GitBashMac;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
