@@ -1,0 +1,17 @@
+Citations
+
+#Apple Script Open Script
+https://stackoverflow.com/questions/10022161/open-programs-with-applescript
+
+#Apple Script Close Script
+http://osxdaily.com/2014/09/05/gracefully-quit-application-command-line/
+
+#Check if file exist
+https://www.cyberciti.biz/faq/unix-linux-test-existence-of-file-in-bash/
+
+#Menus and Pop Icon
+https://www.raywenderlich.com/450-menus-and-popovers-in-menu-bar-apps-for-macos
+
+# Show Hide App Icon
+https://medium.com/@jackymelb/show-hide-dock-icon-on-macos-app-3a59f7df282d
+https://stackoverflow.com/questions/620841/how-to-hide-the-dock-icon
