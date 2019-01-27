@@ -11,9 +11,7 @@ Xcode 10.1, Swift 4.2, macOS 10.14.2
 </p>
 
 <p align="center">
-  <kbd>
   <img height="80%" width="80%" src="https://github.com/iDuckDark/GitBashMac/blob/master/Screenshots/installed.png?raw=true">
-  </kbd>
 </p>
 
 # How to install?
