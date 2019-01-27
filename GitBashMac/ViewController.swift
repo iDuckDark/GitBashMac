@@ -12,14 +12,14 @@ import Foundation
 class ViewController: NSViewController {
     
     @IBOutlet weak var enableButton: NSButton!
-    
-    
     @IBOutlet var welcomeImage: NSImageView!
-    var enable = true;
+    var enable = true
+    var minimize = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        welcomeImage.image =  NSImage(named:"GitBashMac.png")!
+        setWelcomeImage()
+        setupIsInstalled()
     }
     
     override func viewDidAppear() {
@@ -32,6 +32,29 @@ class ViewController: NSViewController {
         didSet {
             // Update the view, if already loaded.
         }
+    }
+    
+    func setWelcomeImage(){
+        welcomeImage.image =  NSImage(named:"GitBashMac.png")!
+    }
+    
+    func setupIsInstalled(){
+        if(gitBashMacisInstalled()){
+            enable = false
+            print("GitBash is Installed ")
+            self.enableButton.title = "Disable";
+        } else{
+            enable = true
+            print("GitBash is not Installed ")
+            self.enableButton.title = "Enable";
+        }
+    }
+    
+    func gitBashMacisInstalled() -> Bool {
+        let command = "[ -f ~/.git-bash-for-mac.sh ] && echo \"Found\" || echo \"Not found\" "
+        let found = shell(command)
+        if(found.contains("Not")) { return false; }
+        return true
     }
     
     func setImage(){
@@ -60,7 +83,7 @@ class ViewController: NSViewController {
             command = "/bin/bash -c \"$(curl -fsSL https://raw.githubusercontent.com/fabriziocucci/git-bash-for-mac/master/uninstall.sh)\""
         }
         do{
-          try executeCommand(command, title)
+            try executeCommand(command, title)
         } catch let error {
             print("Error: \(error)")
         }
@@ -108,9 +131,17 @@ class ViewController: NSViewController {
     
     func constructMenu() {
         let menu = NSMenu()
-        
-        menu.addItem(NSMenuItem(title: "- Minimize GitBashMac", action: #selector(ViewController.minimizeWindow(_:)), keyEquivalent: "P"))
-        menu.addItem(NSMenuItem(title: "+ Maximize GitBashMac", action: #selector(ViewController.maximizeWindow(_:)), keyEquivalent: "P"))
+        if(gitBashMacisInstalled()){
+            menu.addItem(NSMenuItem(title: " ✖ Disable GitBashMac", action: #selector(ViewController.enableButtonAction(_:)), keyEquivalent: "D"))
+        } else{
+            menu.addItem(NSMenuItem(title: " ✔ Enable GitBashMac", action: #selector(ViewController.enableButtonAction(_:)), keyEquivalent: "E"))
+        }
+        if(minimize){
+            menu.addItem(NSMenuItem(title: " + Maximize GitBashMac", action: #selector(ViewController.maximizeWindow(_:)), keyEquivalent: "M"))
+            
+        } else{
+            menu.addItem(NSMenuItem(title: " - Minimize GitBashMac", action: #selector(ViewController.minimizeWindow(_:)), keyEquivalent: "M"))
+        }
         menu.addItem(NSMenuItem.separator())
         menu.addItem(NSMenuItem(title: "Quit GitBashMac", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q"))
         statusItem.menu = menu
@@ -120,7 +151,12 @@ class ViewController: NSViewController {
         let quoteText = "Never put off until tomorrow what you can do the day after tomorrow."
         let quoteAuthor = "Mark Twain"
         print("\(quoteText) — \(quoteAuthor)")
+    }
     
+    func getWindowStatus() -> Int {
+        print(NSApp.activationPolicy().rawValue)
+        let status: Int = NSApp.activationPolicy().rawValue
+        return status
     }
     
     @objc func minimizeWindow(_ sender: Any?){
@@ -137,9 +173,13 @@ class ViewController: NSViewController {
         // The application does not appear in the Dock and may not create
         // windows or be activated.
         //NSApp.setActivationPolicy(.prohibited)
+        self.minimize = !self.minimize
+        constructMenu()
     }
     
     @objc func maximizeWindow(_ sender: Any?){
         NSApp.setActivationPolicy(.regular)
+        self.minimize = !self.minimize
+        constructMenu()
     }
 }
