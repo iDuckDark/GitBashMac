@@ -13,6 +13,6 @@ macOS 10.14.2, Xcode 10.1, Swift 4.2, AppleScript, ShellScript
 </p>
 
 # How to install?
-1. Download the dmg file
+1. Download the dmg file [here](https://github.com/iDuckDark/GitBashMac/raw/master/GitBashMac.dmg)
 2. Open the dmg file and drag app to your applications folder
 3. Click Enable!
