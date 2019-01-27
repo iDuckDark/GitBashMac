@@ -1,2 +1,0 @@
-# GitBashMac
-GitBash For Mac
