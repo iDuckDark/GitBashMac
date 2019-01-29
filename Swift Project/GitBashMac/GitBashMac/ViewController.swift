@@ -20,13 +20,15 @@ class ViewController: NSViewController {
         super.viewDidLoad()
         setWelcomeImage()
         setupIsInstalled()
+        statusItem.target = self;
     }
     
     override func viewDidAppear() {
         super.viewDidAppear()
-        self.view.window?.title = "GitBash for MacOS"
-        constructStatusIem()
+        self.view.window?.title = "GitBash"
+        constructStatusItem()
         self.view.window?.styleMask.remove(NSWindow.StyleMask.resizable)
+        statusItem.target = self;
     }
     
     override var representedObject: Any? {
@@ -65,7 +67,6 @@ class ViewController: NSViewController {
         if let dirPath = paths.first{
             let imageURL = URL(fileURLWithPath: dirPath).appendingPathComponent("GitBashMac.png")
             let image    = NSImage(contentsOfFile: imageURL.path)
-            // Do whatever you want with the image
             welcomeImage.image = image
             print("success")
         }
@@ -97,7 +98,7 @@ class ViewController: NSViewController {
         self.enableButton.title = title
         self.enableButton.isEnabled = true
         self.relaunchTerminal()
-        
+        self.constructStatusItem()
     }
     
     func relaunchTerminal(){
@@ -122,12 +123,22 @@ class ViewController: NSViewController {
     
     let statusItem = NSStatusBar.system.statusItem(withLength:NSStatusItem.squareLength)
     
-    func constructStatusIem() {
-        if let button = statusItem.button {
-            button.image = NSImage(named:NSImage.Name("StatusBarButtonImage"))
-            button.action = #selector(printQuote(_:))
-        }
+    func constructStatusItem() {
+        contructStatusIcon()
         constructMenu()
+        statusItem.target = self;
+    }
+    
+    func contructStatusIcon() {
+        if let button = statusItem.button {
+            if(gitBashMacisInstalled()){
+                button.image = NSImage(named:NSImage.Name("StatusBarButtonImage"))
+            } else{
+                button.image = NSImage(named:NSImage.Name("StatusBarButtonImage2"))
+            }
+            button.action = #selector(showWindow(_:))
+            button.target = self;
+        }
     }
     
     func constructMenu() {
@@ -148,12 +159,6 @@ class ViewController: NSViewController {
         statusItem.menu = menu
     }
     
-    @objc func printQuote(_ sender: Any?) {
-        let quoteText = "Never put off until tomorrow what you can do the day after tomorrow."
-        let quoteAuthor = "Mark Twain"
-        print("\(quoteText) — \(quoteAuthor)")
-    }
-    
     func getWindowStatus() -> Int {
         print(NSApp.activationPolicy().rawValue)
         let status: Int = NSApp.activationPolicy().rawValue
@@ -162,25 +167,18 @@ class ViewController: NSViewController {
     
     @objc func minimizeWindow(_ sender: Any?){
         NSApp.setActivationPolicy(.accessory)
-        // The application is an ordinary app that appears in the Dock and may
-        // have a user interface.
-        //NSApp.setActivationPolicy(.regular)
-        
-        // The application does not appear in the Dock and does not have a menu
-        // bar, but it may be activated programmatically or by clicking on one
-        // of its windows.
-        //NSApp.setActivationPolicy(.accessory)
-        
-        // The application does not appear in the Dock and may not create
-        // windows or be activated.
-        //NSApp.setActivationPolicy(.prohibited)
         self.minimize = !self.minimize
-        constructMenu()
+        constructStatusItem()
     }
     
     @objc func maximizeWindow(_ sender: Any?){
         NSApp.setActivationPolicy(.regular)
         self.minimize = !self.minimize
-        constructMenu()
+        constructStatusItem()
+    }
+    
+    @objc func showWindow(_ sender: Any?){
+        print("Showing Window")
+        print(self.shell("osascript -e 'tell application \"GitBashMac\" to activate'"))
     }
 }
