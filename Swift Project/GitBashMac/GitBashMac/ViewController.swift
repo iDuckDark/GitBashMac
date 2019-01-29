@@ -25,7 +25,7 @@ class ViewController: NSViewController {
     
     override func viewDidAppear() {
         super.viewDidAppear()
-        self.view.window?.title = "GitBash"
+        self.view.window?.title = "GitBashMac"
         constructStatusItem()
         self.view.window?.styleMask.remove(NSWindow.StyleMask.resizable)
         statusItem.target = self;
